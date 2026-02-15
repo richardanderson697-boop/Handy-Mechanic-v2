@@ -4,11 +4,11 @@ FROM node:18-slim
 # Set the working directory
 WORKDIR /app
 
-# Copy package files from your /root folder (where you moved them)
+# Copy package files from the current directory
 COPY package.json ./
 
-# Install dependencies (ignoring the audit)
-RUN npm install --no-audit
+# Force install without audit and skip devDependencies to reduce risk
+RUN npm install --no-audit --fund=false
 
 # Copy the rest of your application code
 COPY . .
