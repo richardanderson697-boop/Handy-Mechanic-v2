@@ -1,17 +1,20 @@
-# syntax=docker/dockerfile:1
-FROM node:18-slim AS base
+# Use Node 18
+FROM node:18-slim
 
+# Set the working directory
 WORKDIR /app
 
-# Install dependencies with extra flags to prevent timeouts
-COPY package.json ./
-RUN npm install --no-audit --prefer-offline
-
-# Copy the rest of the code
+# Step 1: Check what files actually exist (for debugging)
 COPY . .
+RUN ls -la
 
-# Run the Next.js build
+# Step 2: Try to install
+# We use --force because you don't have a lockfile
+RUN npm install --no-audit --force
+
+# Step 3: Build
 RUN npm run build
 
-# Start the app
+# Step 4: Start
+EXPOSE 3000
 CMD ["npm", "start"]
