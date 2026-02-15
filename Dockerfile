@@ -1,20 +1,17 @@
-# Use a lightweight Node image
-FROM node:18-slim
+# syntax=docker/dockerfile:1
+FROM node:18-slim AS base
 
-# Set the working directory
 WORKDIR /app
 
-# Copy package files from the current directory
+# Install dependencies with extra flags to prevent timeouts
 COPY package.json ./
+RUN npm install --no-audit --prefer-offline
 
-# Force install without audit and skip devDependencies to reduce risk
-RUN npm install --no-audit --fund=false
-
-# Copy the rest of your application code
+# Copy the rest of the code
 COPY . .
 
-# Build the Next.js app
+# Run the Next.js build
 RUN npm run build
 
-# Start the application
+# Start the app
 CMD ["npm", "start"]
