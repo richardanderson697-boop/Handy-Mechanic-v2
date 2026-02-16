@@ -3,22 +3,22 @@ FROM node:18-slim
 
 WORKDIR /app
 
-# 1. Copy only the package file first to cache the install step
+# 1. Copy package files first
 COPY package.json ./
 
-# 2. Force install ignoring all audits and lockfiles
+# 2. Force install ignoring all audits and lockfile issues
 RUN npm install --no-audit --fund=false --force
 
-# 3. Copy EVERYTHING else from your main directory
+# 3. Copy the rest of the code from the current main folder
 COPY . .
 
-# 4. Debug: List files so we can see them in the logs if it fails
+# 4. Diagnostic: List files to ensure 'app' and 'public' are visible
 RUN ls -la
 
 # 5. Build the Next.js app
 RUN npm run build
 
-# 6. Railway needs to know which port to open
+# 6. Set Railway standard port
 ENV PORT 3000
 EXPOSE 3000
 
