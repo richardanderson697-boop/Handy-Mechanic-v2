@@ -7,7 +7,8 @@ WORKDIR /app
 COPY package.json ./
 
 # 2. Force install ignoring all audits and lockfile issues
-RUN npm install --no-audit --fund=false --force
+
+RUN npm install --legacy-peer-deps
 
 # 3. Copy the rest of the code from the current main folder
 COPY . .
