@@ -1,6 +1,7 @@
+
 import { NextRequest, NextResponse } from 'next/server';
-import { supabaseAdmin } from '../../../lib/database';
-import { getUserFromHeaders } from '../../../lib/auth';
+import { supabaseAdmin } from '@/lib/database';
+import { getUserFromHeaders } from '@/lib/auth';
 import {
   decodeVIN,
   getVINRecalls,
@@ -8,7 +9,7 @@ import {
   getVehicleHistory,
   estimateVehicleValue,
   isValidVIN,
-} from '../../../lib/vin-decoder';
+} from '@/lib/vin-decoder';
 
 export async function POST(request: NextRequest) {
   try {
