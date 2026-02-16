@@ -20,7 +20,7 @@ RUN ls -la
 RUN npm run build
 
 # 6. Set Railway standard port
-ENV PORT 3000
+ENV PORT=3000
 EXPOSE 3000
 
 CMD ["npm", "start"]
