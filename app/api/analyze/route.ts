@@ -1,6 +1,8 @@
+import { 
 import { NextRequest, NextResponse } from 'next/server';
 import { supabaseAdmin } from '@/lib/database';
 import { getUserFromHeaders } from '@/lib/auth';
+// REMOVED "/vehicle" from the path below
 import {
   decodeVIN,
   getVINRecalls,
