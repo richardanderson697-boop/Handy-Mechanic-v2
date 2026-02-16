@@ -8,7 +8,7 @@ import {
   getVehicleHistory,
   estimateVehicleValue,
   isValidVIN,
-} from '@/lib/vehicle/vin-decoder';
+} from '@/lib/vin-decoder';
 
 export async function POST(request: NextRequest) {
   try {
